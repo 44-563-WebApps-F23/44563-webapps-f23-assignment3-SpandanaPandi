@@ -58,6 +58,28 @@ it is the home to some of the world's most iconic landmarks and museums, from th
     </tr> 
   </table> 
   <br>
+  <hr>
+  <h4>Code display</h4>
+  <blockquote cite="https://stackoverflow.com/questions/32627571/wordpress-exclude-category"></blockquote>
+  <pre>
+    class Exclude_Cat_Plugin {
+
+        public function __construct() {
+           add_action( 'pre_get_posts', array( $this,'exclude_first_category_posts') );
+        }
+        
+        public function exclude_first_category_posts( $wp_query ) {
+        
+                if ( ! is_search() && ! is_archive() ) {
+                    $excluded = array( '-1' );
+                    $wp_query->set( 'category__not_in', $excluded );
+                    set_query_var( 'category__not_in', $excluded );
+                }
+        
+          }}
+  </pre>
+
+  <br>
   
   <a href="mystats.html">MyStats</a> 
 </body>
